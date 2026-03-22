@@ -1,7 +1,9 @@
-function sendWelcome(user) {
-  mailer.send(user.email, "Welcome!");
+async function sendWelcome(user) {
+  await mailer.send(user.email, "Welcome!");
+  logger.info("welcome email sent", { user: user.id });
 }
 
-function sendReset(user) {
-  mailer.send(user.email, "Reset your password");
+async function sendReset(user, token) {
+  await mailer.send(user.email, `Reset: ${token}`);
+  logger.info("reset email sent", { user: user.id });
 }
